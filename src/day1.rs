@@ -6,14 +6,16 @@ fn load_input() -> Vec<i32> {
     let mut vec = Vec::new();
     vec.push(0);
     for line in lines {
-        if line == "" {
+        if line.is_empty() {
             vec.push(0);
             continue;
         }
         let num = line.parse::<i32>().unwrap();
-        vec.last_mut().map(|n| *n += num);
+        if let Some(n) = vec.last_mut() {
+            *n += num
+        }
     }
-    return vec;
+    vec
 }
 
 #[allow(dead_code)]
